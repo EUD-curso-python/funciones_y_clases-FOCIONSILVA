@@ -1,6 +1,6 @@
 from datetime import date
 import random
-
+ 
 import pytest
 
 import funciones_y_clases_solved as md
@@ -14,7 +14,7 @@ def assert_function(func_name, expected, args, kwargs):
     except: raise Exception('Función "{}" genera error'.format(func_name))
     assert expected == result, '{}: input -> args:{}, kwargs:{}'.format(
         func_name, args, kwargs)
-
+ 
 @pytest.mark.parametrize(('var'), [98, 35, 76, 'asdf', [1,2,3]])
 def test_cambiar_global(var):
     func_name = 'cambiar_global'
