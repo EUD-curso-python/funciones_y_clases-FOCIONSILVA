@@ -1,3 +1,6 @@
+
+#python funciones_y_clases.py
+
 global1 = 34
 
 def cambiar_global():
@@ -6,10 +9,14 @@ def cambiar_global():
     Esta función debe asignarle a la variable global `global1` el valor que se
     le pasa como único argumento posicional.
     '''
+    global global1
+    global1 = 56
     pass
+cambiar_global()
+print (global1)
 
-
-def anio_bisiesto():
+anio = 2000
+def anio_bisiesto(anio):
     '''Responder si el entero pasado como argumento es un año bisiesto
     
     Para determinar si un año es bisiesto, se deben tener en cuenta las 
@@ -21,9 +28,22 @@ def anio_bisiesto():
 
     Retorna True o False
     '''
-    pass
+    bisiesto = 'No es bisiesto'
+    
+    if anio % 4 == 0:
+      bisiesto = 'Es bisiesto'
+      if anio % 100 == 0:
+        bisiesto = 'No es bisiesto'
+      else:
+        if anio % 400:
+          bisiesto = 'Es bisiesto'
+    return bisiesto
 
-def contar_valles():
+print (anio_bisiesto(2000))
+
+print('Contar Valles')
+print('---------------')
+def contar_valles(xlista):
     r'''Contar el número de valles
 
     Esta función debe recibir como argumento una lista de -1's, 0's y 1's, y lo 
@@ -41,9 +61,29 @@ def contar_valles():
     representados en la lista, que para el ejemplo que se acaba de mostrar es
     de 3 valles.
     '''
-    pass
 
-def saltando_rocas():
+    valles = 0
+    paso = 1
+    anterior = int(xlista[0])
+    for el in xlista:
+      actual = int(el)
+      if (anterior == actual ) or (anterior == 1 and actual == 0) or (anterior == -1 and actual == 0):
+         print ('Paso ', paso, ' Ant1 ', anterior, ', Act1 ', actual, 'Valles 0')
+      else:
+        if   (anterior == -1 and actual == 1) or (anterior == 0 and actual == 1)  :
+          valles += 1
+          print ('Paso ', paso, ' Ant ', anterior, ', Act ', actual, ' Valles ', valles)
+        anterior = actual
+      paso += 1
+    return valles    
+
+
+print ('resultado')
+lista = [-1,1,0,1,1,-1,0,0,1,-1,1,1,-1,-1]
+
+print(contar_valles(lista))
+
+def saltando_rocas(rocas=[]):
     '''Mínimo número de saltos en las rocas
 
     Esta función hace parte de un juego en el que el jugador debe cruzar un río
@@ -57,7 +97,36 @@ def saltando_rocas():
     El objetivo es devolver el número mínimo de saltos que debe realizar el 
     jugador para ganar la partida
     '''
-    pass
+    saltos = 0
+    cruzo = False
+    perdio = False
+    print(len(rocas))
+    i = 0
+    while cruzo == False and perdio == False:
+      print(i)
+      if i <= len(rocas)-3:
+          if rocas[i+2] == 1:
+              i = i + 2
+              saltos += 1
+          elif rocas[i+1] == 1:
+              i = i + 1
+              saltos += 1
+          else:
+            perdio = True            
+            return ('Perdio')
+      elif i < len(rocas) - 1:
+          if rocas[i+1] == 1:
+            saltos += 1
+            i += 1
+      else:
+        cruzo = True
+
+    return saltos
+    
+
+xlista=[0,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+print('Piedras')
+print(saltando_rocas( xlista))
 
 def pares_medias():
     '''Contar pares de medias
@@ -77,7 +146,37 @@ def pares_medias():
 # los elementos del atributo `lista` unidos a través de comas. Ejemplo:
 # si `lista` es [1,2,3,4], __str__ debe devolver '1,2,3,4'
 
+class ListaComa:
 
+  def __init__(self,lista):
+    self.lista = lista
+  def metodoStr(self):
+    return (str(lista))
+
+
+
+
+class Persona:
+    nombre = None
+    apellido = None
+    edad = None
+    es_viejo = None
+
+    def __init__(self, nombre, apellido, edad, telefono=None):
+        self.nombre = nombre
+        self.apellido = apellido
+        self.edad = edad
+        self.telefono = telefono
+
+        if edad < 70:
+            self.es_viejo = False
+        else:
+            self.es_viejo = True
+
+    def nombre_completo(self):
+        if self.apellido is None:
+            return self.nombre
+        return self.nombre + ' ' + self.apellido
 
 
 # Crear una clase llamada `Persona` que reciba en su constructor como 1er 
