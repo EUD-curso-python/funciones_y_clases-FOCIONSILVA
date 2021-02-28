@@ -83,8 +83,9 @@ lista = [-1,1,0,1,1,-1,0,0,1,-1,1,1,-1,-1]
 
 print(contar_valles(lista))
 
+'''
 def saltando_rocas(rocas=[]):
-    '''Mínimo número de saltos en las rocas
+    Mínimo número de saltos en las rocas
 
     Esta función hace parte de un juego en el que el jugador debe cruzar un río
     saltando de roca en roca hasta llegar al otro lado. Hay dos tipo de rocas, 
@@ -96,14 +97,14 @@ def saltando_rocas(rocas=[]):
     representan las rocas secas y los unos las húmedas.
     El objetivo es devolver el número mínimo de saltos que debe realizar el 
     jugador para ganar la partida
-    '''
+    
+  
     saltos = 0
     cruzo = False
     perdio = False
     print(len(rocas))
     i = 0
     while cruzo == False and perdio == False:
-      print(i)
       if i <= len(rocas)-3:
           if rocas[i+2] == 1:
               i = i + 2
@@ -113,22 +114,20 @@ def saltando_rocas(rocas=[]):
               saltos += 1
           else:
             perdio = True            
-            return ('Perdio')
       elif i < len(rocas) - 1:
           if rocas[i+1] == 1:
             saltos += 1
             i += 1
       else:
         cruzo = True
-
     return saltos
-    
-
-xlista=[0,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+xlista=[1,0,1,0,1,1,1,1]
 print('Piedras')
 print(saltando_rocas( xlista))
+'''
 
-def pares_medias():
+
+def pares_medias(medias=[]):
     '''Contar pares de medias
 
     Esta función debe recibir como argumento una lista de enteros. Cada elemento
@@ -138,7 +137,34 @@ def pares_medias():
     uno de los colores que se encuentren en la lista, y los valores son la 
     cantidad de pares que se han encontrado para cada color.
     '''
-    pass
+
+    medias.sort()
+    print (medias)
+    listapares=[]
+    listacolores=[]
+    
+    while len(medias) > 0:
+      color = medias[0]
+      totalmedias = medias.count(color)
+      for i in range (0,totalmedias):
+        medias.remove(color)
+      print(medias)  
+      if totalmedias >= 2:
+        if totalmedias % 2 == 0:
+          listacolores.append(color)
+          listapares.append(totalmedias/2)
+        else:
+          listacolores.append(color)
+          listapares.append((totalmedias-1)/2)
+      
+    if len(listacolores) > 0:
+      return  dict(list(zip(listacolores, listapares)))
+    else:
+      return []
+
+xlista=[1,1,1,2,2,2,3,3,3,3,7,6,7,7,7,6,6,6,0,1,33,1,33,45,67,32,45,1,0,0,7,45]
+
+print(pares_medias( xlista))
 
 # Crear una clase llamada `ListaComa` que reciba en su constructor un iterable
 # con el valor inicial para una lista que se guardará en un atributo llamado 
