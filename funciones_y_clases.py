@@ -162,7 +162,7 @@ def pares_medias(medias=[]):
     else:
       return []
 
-xlista=[1,1,1,2,2,2,3,3,3,3,7,6,7,7,7,6,6,6,0,1,33,1,33,45,67,32,45,1,0,0,7,45]
+xlista=[1,1,1,2,2,2,3,3,3,1,33,45,67,32,45,1,0,0,7,45]
 
 print(pares_medias( xlista))
 
@@ -174,12 +174,23 @@ print(pares_medias( xlista))
 
 class ListaComa:
 
-  def __init__(self,lista):
+  def __init__(self,lista=[]):
     self.lista = lista
-  def metodoStr(self):
-    return (str(lista))
 
+  def __str__(self):
+    
+    cadena = ''
+    for n  in range (0, len(self.lista)):
+      #print(len(self.lista), ' - ',  cadena)
+      print(n)
+      if n == len(self.lista)-1:
+        cadena = cadena + str(self.lista[n] )
+      else:
+        cadena = cadena + str(self.lista[n]) + ','
+    return cadena
 
+pedro = ListaComa([1,2,3,4,5,6,7])
+print(pedro.__str__())
 
 
 class Persona:
